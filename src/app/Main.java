@@ -33,6 +33,7 @@ public class Main {
             System.out.println("Invalid platform. Use WINDOWS or MACOS.");
             return;
         }
-        
+        DeliveryApplication application = new DeliveryApplication(factory, logistics);
+        application.run("Books", "Astana");
     }
 }
