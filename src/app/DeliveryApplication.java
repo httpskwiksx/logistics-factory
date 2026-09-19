@@ -13,4 +13,9 @@ public class DeliveryApplication {
         this.checkbox = factory.createCheckbox();
         this.logistics = logistics;
     }
+    public void run(String cargo, String destination){
+            button.paint();
+            checkbox.paint();
+            logistics.planDelivery(cargo, destination);
+    }
 }
