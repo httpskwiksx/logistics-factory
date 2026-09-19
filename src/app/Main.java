@@ -2,6 +2,9 @@ package app;
 import logistics.Logistics;
 import logistics.RoadLogistics;
 import logistics.SeaLogistics;
+import ui.GUIFactory;
+import ui.WindowsFactory;
+import ui.MacOSFactory;
 public class Main {
     public static void main(String[] args) {
         if (args.length != 2) {
@@ -20,5 +23,16 @@ public class Main {
             System.out.println("Invalid delivery type. Use ROAD or SEA.");
             return;
         }
+        GUIFactory factory;
+
+        if ("WINDOWS".equals(platform)) {
+            factory = new WindowsFactory();
+        } else if ("MACOS".equals(platform)) {
+            factory = new MacOSFactory();
+        } else {
+            System.out.println("Invalid platform. Use WINDOWS or MACOS.");
+            return;
+        }
+        
     }
 }
