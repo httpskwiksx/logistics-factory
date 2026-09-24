@@ -45,5 +45,7 @@ public class Main {
         } else {
             factory = new MacOSFactory();
         }
+        DeliveryApplication application = new DeliveryApplication(factory, logistics);
+        application.run("Books", "Astana");
     }
 }
