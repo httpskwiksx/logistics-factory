@@ -11,29 +11,39 @@ public class Main {
             System.out.println("Usage: <ROAD|SEA> <WINDOWS|MACOS>");
             return;
         }
-        String deliveryType = args[0];
-        String platform = args[1];
+        String deliveryType = args[0].toUpperCase();
+        String platform = args[1].toUpperCase();
+
+        boolean validInput = true;
+
+        if (!"ROAD".equals(deliveryType) && !"SEA".equals(deliveryType)) {
+            System.out.println("Invalid delivery type. Use ROAD or SEA.");
+            validInput = false;
+        }
+
+        if (!"WINDOWS".equals(platform) && !"MACOS".equals(platform)) {
+            System.out.println("Invalid platform. Use WINDOWS or MACOS.");
+            validInput = false;
+        }
+
+        if (!validInput) {
+            return;
+        }
+
         Logistics logistics;
 
         if ("ROAD".equals(deliveryType)) {
             logistics = new RoadLogistics();
-        } else if ("SEA".equals(deliveryType)) {
-            logistics = new SeaLogistics();
         } else {
-            System.out.println("Invalid delivery type. Use ROAD or SEA.");
-            return;
+            logistics = new SeaLogistics();
         }
+
         GUIFactory factory;
 
         if ("WINDOWS".equals(platform)) {
             factory = new WindowsFactory();
-        } else if ("MACOS".equals(platform)) {
-            factory = new MacOSFactory();
         } else {
-            System.out.println("Invalid platform. Use WINDOWS or MACOS.");
-            return;
+            factory = new MacOSFactory();
         }
-        DeliveryApplication application = new DeliveryApplication(factory, logistics);
-        application.run("Books", "Astana");
     }
 }
